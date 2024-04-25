@@ -1,8 +1,13 @@
-// const { Cookie } = require("express-session");
+const cookieParser = require('cookie-parser');
 
 const cookieController = {};
 
 cookieController.setCookie = (req, res, next) => {
-  res.cookie('userId', req.header.authorization);
+  res.cookie('jwt', res.locals.user.token, {
+    httpOnly: true,
+    expiresIn: 3600000
+  });
   return next();
 }
+
+module.exports = cookieController;
