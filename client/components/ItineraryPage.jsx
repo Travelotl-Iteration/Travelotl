@@ -5,12 +5,15 @@ import Itinerary from "./Itinerary"
 
 
 const ItineraryPage = () => {
-  const itinerary = useSelector(state => state.itinerary);
+  const itinerary = useSelector(state => state.itinerary.itinerary);
+  const hotels = useSelector(state => state.itinerary.hotels);
+  console.log("itinerary page:",itinerary)
+  console.log('itinerary page hotels: ',hotels)
   return (
     <div>
       <Header />
       <h2>Your Itinerary</h2>
-      <Itinerary itinerary={itinerary} />
+      <Itinerary itinerary={itinerary} hotels={hotels} />
     </div>
   );
 };

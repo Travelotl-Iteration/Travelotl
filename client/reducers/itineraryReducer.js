@@ -7,7 +7,9 @@ const itinerarySlice = createSlice({
   initialState,
   reducers: {
     updateItinerary(state, action) {
-      state.itinerary = action.payload;
+      state.itinerary = action.payload.itinerary;
+      state.hotels = action.payload.hotels
+      console.log('in reducer state: ',state.hotels)
     },
   },
 });

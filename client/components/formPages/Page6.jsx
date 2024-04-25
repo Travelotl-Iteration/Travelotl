@@ -37,7 +37,7 @@ const Page6 = () => {
       });
       const parsedData = await response.json();
       if (response.ok) {
-        dispatch(updateItinerary(parsedData.itinerary));
+        dispatch(updateItinerary(parsedData));
         navigate('/itinerary');
         setLoading(false);
       } else {
