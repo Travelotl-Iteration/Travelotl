@@ -2,7 +2,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
-const registerUser = async (req, res) => {
+const userController = {};
+
+userController.registerUser = async (req, res, next) => {
   console.log('request to register user', req.body);
   try {
     const { firstName, lastName, email, password } = req.body;
@@ -30,10 +32,12 @@ const registerUser = async (req, res) => {
     const user = await User.create({firstName, lastName, email, password: hashedPassword});
 
     if (user) {
-      res.status(201).json({ _id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, token: generateToken(user._id) })
+      res.locals.user = { _id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, token: generateToken(user._id) };
     } else {
       res.status(400).json({ error: 'Invalid user data'})
     }
+
+    return next();
 
   } catch (error) {
     console.error(error);
@@ -41,35 +45,41 @@ const registerUser = async (req, res) => {
   }
 }
 
-const loginUser = async (req, res) => {
+userController.loginUser = async (req, res, next) => {
   console.log('request to login user', req.body);
   const { email, password } = req.body;
 
   try {
+    // check the user
     const user = await User.findOne({ email });
     if (!user) {
+      console.log('User not found');
       return res.status(400).json({ error: 'User not found' });
     }
-
+    // check the password
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
+      console.log('Incorrect credentials');
       return res.status(400).json({ error: 'Invalid credentials' });
     }
-
-    return res.status(200).json({
+    // return user object
+    res.locals.user = {
       _id: user._id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       token: generateToken(user._id),
-    });
+    };
+
+    return next();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
 
-const getUser = async (req, res) => {
+// possibly not using this?
+userController.getUser = async (req, res) => {
   const user = await User.findById(req.user.id);
   try {
     res.status(200).json({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email})
@@ -82,7 +92,7 @@ const getUser = async (req, res) => {
 
 // generate json web token
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: '30d'})
+  return jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: '1h'})
 }
 
-module.exports = { registerUser, loginUser, getUser };
+module.exports = userController;
