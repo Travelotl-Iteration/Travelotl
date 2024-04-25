@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 .header-container {
-    text-decoration: underline;
-    text-decoration-color: blue;
+    text-decoration-color: black;
     column-count: 3;
-    background: rgb(145,206,224);
-    background: radial-gradient(circle, rgba(145,206,224,1) 0%, rgba(167,166,166,1) 100%);
+    background: rgb(199, 220, 167);
     border-radius: 10px;
     border-width: 4px;
-    border-color: rgb(4, 153, 153);
+    width: 100%;
+    align-self: center;
+    justify-content: center;
+    border-color:  rgb(137, 185, 173)
 }
 
 .activities{
@@ -23,12 +24,10 @@
 
 .activity-card{
     border-radius: 25px;
-    background: rgba(37, 99, 235);
+    background: rgb(199, 220, 167);
     box-shadow: 10px 5px 5px black;
-    color: white;
+    color: black;
     padding: 24px;
-    width: 200px;
-    height: 85px;
     text-align: center;
     text-justify: center;
     font-weight: bold;
@@ -104,10 +103,6 @@
     justify-content: center;
 }
 
-#start {
-    color: blue;
-    text-decoration: underline;
-}
 
 #itinerary-details {
     margin-left: 20px;
@@ -135,3 +130,11 @@
     margin-left: 10px;
 }
 
+.text-3xl{
+    
+}
+
+.start{
+    text-align: center;
+    justify-content: center;
+}
