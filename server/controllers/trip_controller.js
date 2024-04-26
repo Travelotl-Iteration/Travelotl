@@ -8,20 +8,6 @@ const { recompileSchema } = require('../models/User');
 
 const openai = new OpenAI({ apiKey: process.env.OPEN_AI_API_KEY });
 
-// TEST DATA - DELETE WHEN FINISHEDßß
-// const travelPlans = {
-//   destination: 'Los Angeles, CA',
-//   startDate: 'June 2, 2024',
-//   endDate: 'June 8, 2024',
-//   activities: [],
-//   budget: 500,
-//   travelers: 1,
-//   groupDescription: 'Solo traveler',
-//   loading: false,
-//   error: null,
-// }
-// ========= end of TEST DATA ============
-
 const tripController = {
   // buildTrip - To fetch itinerary from API request to Open AI
   async buildTrip(req, res, next) {
@@ -85,7 +71,7 @@ const tripController = {
     // const { email } = req.body;
     Itinerary.create({
       // email: req.body.email,
-      user: req.user._id,
+      user: res.locals.user._id,
       tripName: res.locals.tripName,
       destination: req.body.destination,
       startDate: req.body.startDate,
@@ -124,13 +110,12 @@ const tripController = {
 
   // retrieveAll - To retrieve all trips saved for a specific user
   retrieveAll(req, res, next) {
+    console.log('user', res.locals.user)
     Itinerary.find({
-      "email": req.body.email,
+      "user": res.locals.user._id,
     })
       .then (result => {
-        // console.log(result);
         res.locals.allTrips = result;
-        console.log("All trips retrieved - retrieveAllTrips middleware");
         return next();
       })
       .catch (err => {
