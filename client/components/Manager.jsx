@@ -3,37 +3,34 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateItinerary } from "../reducers/itineraryReducer";
 import { Link, useNavigate } from 'react-router-dom';
 import Header from "./Header";
+import Cookies from 'js-cookie';
 
 const Manager = () => {
   const [itineraries, setItineraries] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [jwt, setJwt] = useState(null);
 
-  // Retrieve all itineraries associated with the user and update state
+  // Look for a jwt on cookies every time component renders and get itineraries if found
   useEffect(() => {
-    try {
-      const getItineraryList = async () => {
-        const jwt = getCookie('jwt');
-        console.log('jwt');
-        const itineraryListResponse = await fetch('api/trip/retrieve', {
-          method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${getCookie('jwt')}`,
-            },
-        });
-  
-        const itineraryList = await itineraryList.json();
-  
-        console.log(itineraryList);
-        setItineraries(itineraryList);
-  
-      }
-      getItineraryList();   
-    } catch (error) {
-      console.error('Error with request:', error);
-    }
-    
-  }, []);
+    const getItineraryList = async () => {
+      const itineraryListResponse = await fetch('api/trip/retrieve', {
+        method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${jwt}`,
+          },
+      });
+      const itineraryList = await itineraryListResponse.json();
+      setItineraries(itineraryList);
+    };
+
+    const jwt = Cookies.get('jwt');
+    if (!jwt) navigate('/login')
+    else {
+      setJwt(jwt);
+      getItineraryList();
+    }  
+  }, [])
 
   const deleteItinerary = async (e) => {
     const tripId = e.target.parentNode.parentNode.id;
@@ -42,7 +39,7 @@ const Manager = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
+          'Authorization': `Bearer ${jwt}`,
         },
         body: JSON.stringify({ tripId: tripId }),
       });
@@ -59,12 +56,12 @@ const Manager = () => {
 
   const seeDetails = async (e) => {
     const tripId = e.target.parentNode.parentNode.id;
-
+    console.log('trip id', tripId)
     try {
       let itineraryList = await fetch('api/trip/retrieve', {
         method: 'GET',
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
+            'Authorization': `Bearer ${jwt}`,
           },
       });
 
@@ -83,7 +80,7 @@ const Manager = () => {
       }
       console.log("See Details of:", foundTrip);
       if (foundTrip) {
-        dispatch(updateItinerary(foundTrip.itinerary));
+        dispatch(updateItinerary(foundTrip));
         navigate('/itinerary');
       }
       

@@ -71,7 +71,7 @@ const tripController = {
     // const { email } = req.body;
     Itinerary.create({
       // email: req.body.email,
-      user: req.user._id,
+      user: res.locals.user._id,
       tripName: res.locals.tripName,
       destination: req.body.destination,
       startDate: req.body.startDate,
@@ -110,13 +110,12 @@ const tripController = {
 
   // retrieveAll - To retrieve all trips saved for a specific user
   retrieveAll(req, res, next) {
+    console.log('user', res.locals.user)
     Itinerary.find({
-      "email": req.body.email,
+      "user": res.locals.user._id,
     })
       .then (result => {
-        // console.log(result);
         res.locals.allTrips = result;
-        console.log("All trips retrieved - retrieveAllTrips middleware");
         return next();
       })
       .catch (err => {

@@ -5,7 +5,7 @@ const authController = {};
 
 authController.protect = async (req, res, next) => {
   let token
-  console.log(req.headers.authorization);
+  console.log('header', req.headers.authorization);
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       // Get token from header
@@ -13,13 +13,14 @@ authController.protect = async (req, res, next) => {
 
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
+      console.log('decoded', decoded);
 
 
       // Get user from the token, not including the hashed password
-      req.user = await User.findById(decoded.id).select('-password')
-      console.log(req.user);
+      res.locals.user = await User.findById(decoded.id).select('-password')
+      console.log('user', res.locals.user);
 
-      next()
+      return next()
     } catch (error) {
       console.log(error)
       res.status(401).json({ error: 'Not authorized'})
