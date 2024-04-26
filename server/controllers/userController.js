@@ -20,6 +20,7 @@ userController.registerUser = async (req, res, next) => {
 
     // console.log(userExists);
     if (userExists) {
+      console.log(`User already exists: ${userExists}`);
       res.status(400).json({ error: 'User already exists'});
       return;
     }

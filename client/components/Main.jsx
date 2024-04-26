@@ -5,7 +5,7 @@ const Main = () => {
   const navigate = useNavigate();
   
   function GO(){
-      navigate('/login')
+      navigate('/form')
   }
   
   return (
