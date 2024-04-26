@@ -5,11 +5,11 @@ let endDate = new Date(Date.now());
 endDate.setDate(startDate.getDate() + 3);
 
 const initialState = {
-  destination: 'Las Vegas, NV',
+  destination: 'New York City',
   startDate: startDate.toISOString().slice(0, 10),
   endDate: endDate.toISOString().slice(0, 10),
   activities: [],
-  budget: 500,
+  budget: 1000,
   travelers: 1,
   groupDescription: 'Solo traveler',
 };

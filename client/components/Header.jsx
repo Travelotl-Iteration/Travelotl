@@ -31,10 +31,10 @@ const Header = () => {
        About
       </div>
       <div className='text-center m-2' onClick={LoginClick}>
-      Register
+      Login
       </div>
       <div className='text-center m-2' onClick={RegisterClick}>
-        Login
+        Register
       </div>
     </div>
   );
