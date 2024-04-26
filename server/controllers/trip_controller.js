@@ -8,20 +8,6 @@ const { recompileSchema } = require('../models/User');
 
 const openai = new OpenAI({ apiKey: process.env.OPEN_AI_API_KEY });
 
-// TEST DATA - DELETE WHEN FINISHEDßß
-// const travelPlans = {
-//   destination: 'Los Angeles, CA',
-//   startDate: 'June 2, 2024',
-//   endDate: 'June 8, 2024',
-//   activities: [],
-//   budget: 500,
-//   travelers: 1,
-//   groupDescription: 'Solo traveler',
-//   loading: false,
-//   error: null,
-// }
-// ========= end of TEST DATA ============
-
 const tripController = {
   // buildTrip - To fetch itinerary from API request to Open AI
   async buildTrip(req, res, next) {

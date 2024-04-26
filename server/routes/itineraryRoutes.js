@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const tripController = require('../controllers/itinerary_controller');
+const tripController = require('../controllers/trip_controller');
 const authController = require('../controllers/auth_controller');
 
 router.post('/build', (req, res, next)=>{

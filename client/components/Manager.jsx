@@ -13,14 +13,16 @@ const Manager = () => {
   useEffect(() => {
     try {
       const getItineraryList = async () => {
-        let itineraryList = await fetch('api/trip/retrieve', {
+        const jwt = getCookie('jwt');
+        console.log('jwt');
+        const itineraryListResponse = await fetch('api/trip/retrieve', {
           method: 'GET',
             headers: {
-              'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
+              'Authorization': `Bearer ${getCookie('jwt')}`,
             },
         });
   
-        itineraryList = await itineraryList.json();
+        const itineraryList = await itineraryList.json();
   
         console.log(itineraryList);
         setItineraries(itineraryList);
