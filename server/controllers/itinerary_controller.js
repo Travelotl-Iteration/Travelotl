@@ -38,7 +38,7 @@ const tripController = {
     // const prompt = `Make an itinerary for a honeymoon to ${destination} from ${startDate} until ${endDate}.` +  
     const prompt = `Make an itinerary for a honeymoon to ${destination} for ${timeDiff} days` +
     `I do not want to spend more than ${budget} dollars. Include the following types of attractions: ${activities.join(', ')}` +
-    `Organize the itinerary by the following times of day: morning, afternoon, and evening. Recommend specific places of interest with their address and only` +
+    `Organize the itinerary by the following times of day: morning, afternoon, and evening. Recommend specific places of interest with their address and a short description.` +
     `Limit cross-city commutes by grouping places of interest by geography for each day. Please provide three hotel suggestions. ` + 
     `Give the names of the hotels with their addresses and their zipcodes or postal codes.` +
      `Output the response in json format following this schema:

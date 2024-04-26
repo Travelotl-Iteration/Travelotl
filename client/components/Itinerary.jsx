@@ -42,8 +42,7 @@ const Itinerary = (props) => {
   //     console.log(activities)
   //   })
   // }
-  console.log(hotels)
- //console.log(itinerary.hotels)
+ 
 
   return (
 
