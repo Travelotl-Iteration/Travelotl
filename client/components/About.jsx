@@ -4,7 +4,15 @@ const About = () => {
   return (
     <div>
       <Header />
-      <h1>About</h1>
+      <h1>About the Team</h1>
+      <section><br/>
+        <th>Name</th>
+        <tr>Will</tr>
+        <tr>Yang</tr>
+        <tr>Ashley</tr>
+        <tr>Nicolette</tr><br/>
+
+      </section>
     </div>
   );
 };

@@ -1,12 +1,18 @@
 import Header from "./Header";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
+  
+  function GO(){
+      navigate('/form')
+  }
+  
   return (
     <div>
       <Header />
       <p>Let us plan the trip of your dreams...</p>
-      <Link to='/form' id='start'>Click here to get started... </Link>
+      <button id='start' onClick={GO}>Click here to get started... </button>
     </div>
   );
 };
