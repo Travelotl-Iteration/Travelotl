@@ -33,6 +33,8 @@ export const store = configureStore({
 
 const root = document.getElementById('root');
 
+// || document.createElement('div')
+
 createRoot(root).render(
   <React.StrictMode>
     <Provider store={store}>
