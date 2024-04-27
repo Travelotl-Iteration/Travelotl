@@ -24,7 +24,7 @@ router.get('/user', authController.protect, userController.getUser);
 
 // logout clears the user's cookie
 router.get('/logout',
-  (req, res) => res.clearCookie('jwt').json('Successfully logged out')
+  (req, res) => res.status(200).clearCookie('jwt').json('Successfully logged out')
 )
 
 
