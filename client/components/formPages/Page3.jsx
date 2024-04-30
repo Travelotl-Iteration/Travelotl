@@ -31,7 +31,7 @@ const Page3 = () => {
   };
 
   return (
-    <div className="bg-gray-300 rounded border-4 border-black ">
+    <div className="bg-gray-300 rounded border-4 border-black w-[50%]">
       <p className='text-2xl text-center'>Select activities you are interested in...</p>
       <ul className="activities">
         <li className='activity-card'>

@@ -188,3 +188,8 @@
   .register-page {
     padding: 10px;
   }
+
+  .inline-block {
+    padding: 20px;
+    text-align: end;
+  }
