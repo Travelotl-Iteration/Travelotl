@@ -18,8 +18,6 @@ import Page1 from './components/formPages/Page1';
 import Page2 from './components/formPages/Page2';
 import Page3 from './components/formPages/Page3';
 import Page4 from './components/formPages/Page4';
-import Page5 from './components/formPages/Page5';
-import Page6 from './components/formPages/Page6';
 import ItineraryPage from './components/ItineraryPage';
 import Register from './components/Register';
 import '../styles.css';
@@ -51,8 +49,6 @@ createRoot(root).render(
               <Route path="/form/page2" element={<Page2 />} />
               <Route path="/form/page3" element={<Page3 />} />
               <Route path="/form/page4" element={<Page4 />} />
-              <Route path="/form/page5" element={<Page5 />} />
-              <Route path="/form/page6" element={<Page6 />} />
             </Route>
           </Route>
           <Route path="/itinerary" element={<ItineraryPage />} />
