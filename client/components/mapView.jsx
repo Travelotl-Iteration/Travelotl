@@ -1,17 +1,17 @@
 import React from 'react';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, } from '@vis.gl/react-google-maps';
 
 const MapUI = () => {
-  
+  const test_position_of_hotel_marker = {lat: 61.2176, lng: -149.8997};
+
   return (
-    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      <Map
-        style={{ width: '100vw', height: '100vh' }}
-        defaultCenter={{ lat: 22.54992, lng: 0 }}
+    <APIProvider apiKey={'AIzaSyD-QBFaA4K7IAT-N4hiOsUbmrt2CNSG9TA'}>
+      <Map style={{ width: '100vw', height: '100vh' }}
+        defaultCenter={{ lat: 40.747761, lng: -73.993362 }}
         defaultZoom={3}
         gestureHandling={'greedy'}
-        disableDefaultUI={true}
-      />
+        disableDefaultUI={true} >
+        </ Map>
     </APIProvider>
   );
 };
