@@ -24,17 +24,17 @@ const Header = () => {
     
   return (
     <div className="header-container " >
-      <div className=" text-3xl font-bold font-serif text-center"  onClick={TravelotlClick}>Travelotl</div>
-      <div className='text-right m-2' onClick={ManagerClick}>
+      <div className=" text-3xl font-bold font-serif"  onClick={TravelotlClick}>Travelotl</div>
+      <div className='inline-block' id="manager" onClick={ManagerClick}>
         Manager
       </div>
-      <div className='text-right m-2' onClick={AboutClick}>
+      <div className='inline-block'  id="about" onClick={AboutClick}>
        About
       </div>
-      <div className='text-center m-2' onClick={LoginClick}>
+      <div className='inline-block'  id="login" onClick={LoginClick}>
       Login
       </div>
-      <div className='text-center m-2' onClick={RegisterClick}>
+      <div className='inline-block'  id="register" onClick={RegisterClick}>
         Register
       </div>
     </div>
