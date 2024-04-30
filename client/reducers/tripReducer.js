@@ -10,6 +10,7 @@ const initialState = {
   endDate: endDate.toISOString().slice(0, 10),
   activities: [],
   budget: 1000,
+  hotelBudget: 1000,
   travelers: 1,
   groupDescription: 'Solo traveler',
 };
@@ -33,6 +34,9 @@ const tripSlice = createSlice({
     updateBudget(state, action) {
       state.budget = action.payload;
     },
+    updateHotelBudget(state, action) {
+      state.hotelBudget = action.payload;
+    },
     updateTravelers(state, action) {
       state.travelers = action.payload;
     },
@@ -43,5 +47,5 @@ const tripSlice = createSlice({
 });
 
 export const { actions, reducer } = tripSlice;
-export const { updateDestination, updateStartDate, updateEndDate, updateActivities, updateBudget, updateTravelers, updateGroupDescription } = actions;
+export const { updateDestination, updateStartDate, updateEndDate, updateActivities, updateBudget, updateHotelBudget,updateTravelers, updateGroupDescription } = actions;
 export default reducer;
