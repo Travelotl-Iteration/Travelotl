@@ -1,6 +1,7 @@
 import Header from "./Header"
 import React from 'react';
-
+import yang from '../assets/yang_480.jpg';
+import sookar from '../assets/Sookar_photo.jpg'
 const About = () => {
   const people = [
     {
@@ -17,11 +18,11 @@ const About = () => {
     {
       name: 'Nicolette',
       role: 'OpenAI & Full Stack Developer',
-      imageUrl: 'https://media.licdn.com/dms/image/D4E03AQHnoMfq-IyBTw/profile-displayphoto-shrink_100_100/0/1697138455670?e=1720051200&v=beta&t=Aor-05AHjqPcdLIlzufxyYs2YglXJdsCMPjvYbh2xo4',
+      imageUrl: `${sookar}`,
     },  {
       name: 'Yang',
       role: 'Itinerary & Full Stack Developer',
-      imageUrl: 'https://media.licdn.com/dms/image/D4E03AQGXJ0hgaPEgRA/profile-displayphoto-shrink_400_400/0/1701100323576?e=1720051200&v=beta&t=tkqL_CDAxLPTGgAVZWC539AauVvWfXUFXzuoqCwiXdU',
+      imageUrl: `${yang}`,
     },
     {
       name: 'Ashley ',

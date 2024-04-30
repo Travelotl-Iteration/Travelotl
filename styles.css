@@ -193,3 +193,8 @@
     padding: 20px;
     text-align: right;
   }
+
+  #login-button, #register-button {
+    background-color: white;
+    padding: 3px;
+  }

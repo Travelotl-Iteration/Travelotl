@@ -28,7 +28,6 @@ const Login = () => {
   return (
     <div >
       <Header />
-  
       <form onSubmit={handleSubmit} className="login-page" id="login-form">
         <label>
           Email:
@@ -40,7 +39,7 @@ const Login = () => {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button type="submit" id="login-button">Login</button>
       </form>
     </div>
   );
