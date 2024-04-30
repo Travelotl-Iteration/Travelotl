@@ -27,8 +27,8 @@ const Register = () => {
   return (
     <div>
         <Header />
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit} method='post' action='submit' id='registerForm'>
+    
+      <form onSubmit={handleSubmit} method='post' action='submit' id='registerForm' className="register-page">
         <label>
           First Name:
           <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />

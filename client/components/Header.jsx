@@ -24,11 +24,11 @@ const Header = () => {
     
   return (
     <div className="header-container " >
-      <div className=" text-3xl font-bold font-serif text-center"  onClick={TravelotlClick}>Travelotl</div>
-      <div className='text-right m-2' onClick={ManagerClick}>
+      <div className=" text-3xl font-bold font-serif"  onClick={TravelotlClick}>Travelotl</div>
+      <div className='text-center m-2' onClick={ManagerClick}>
         Manager
       </div>
-      <div className='text-right m-2' onClick={AboutClick}>
+      <div className='text-center m-2' onClick={AboutClick}>
        About
       </div>
       <div className='text-center m-2' onClick={LoginClick}>

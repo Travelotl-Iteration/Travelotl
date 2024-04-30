@@ -9,8 +9,8 @@
     border-radius: 10px;
     border-width: 4px;
     width: 100%;
-    align-self: center;
-    justify-content: center;
+    /* align-self: center; */
+    /* justify-content: center; */
     border-color:  rgb(137, 185, 173)
 }
 
@@ -131,7 +131,7 @@
 }
 
 .text-3xl{
-    
+    padding: 10px;
 }
 
 .start{
@@ -181,3 +181,10 @@
     text-align: center;
   }
   
+  .login-page {
+    padding: 10px;
+  }
+
+  .register-page {
+    padding: 10px;
+  }
