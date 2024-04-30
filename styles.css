@@ -138,3 +138,46 @@
     text-align: center;
     justify-content: center;
 }
+
+.activity {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .activity:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .activity h3 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .activity h3:first-child {
+    margin-top: 0;
+  }
+  
+  .activity h3:last-child {
+    margin-bottom: 0;
+  }
+  
+  .day {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .dayHeader {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  

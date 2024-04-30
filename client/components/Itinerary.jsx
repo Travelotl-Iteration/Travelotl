@@ -1,5 +1,8 @@
 import React from "react";
 import HotelModal from './HotelModal.jsx';
+import Schedule from './schedule/Schedule.jsx';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
 const Itinerary = (props) => {
@@ -45,9 +48,11 @@ const Itinerary = (props) => {
  
 
   return (
+  
 
-   <>
-    <div id='itinerary-details'>
+   <DndProvider backend={HTML5Backend}>
+    <Schedule />
+    {/* <div id='itinerary-details'>
       {itineraryEntries.map(([dayNumber, activities]) => (
         <div className="day-entry" key={dayNumber}>
           <h2 className='date'>{dayNumber}</h2>
@@ -62,7 +67,7 @@ const Itinerary = (props) => {
             ))}
           </div>
         </div>
-      ))}
+      ))} */}
       { <div className="day-details">
         <h2 className='date'>Hotel Options</h2>
         {hotels.map((data) => ( 
@@ -72,9 +77,9 @@ const Itinerary = (props) => {
           </>
       ))}
       </div> }
-    </div>
+    {/* </div> */}
     {showModal && <HotelModal hotelData={hotelData} setShowModal={setShowModal}></HotelModal>}
-  </>
+  </DndProvider>
   );
 };
 
