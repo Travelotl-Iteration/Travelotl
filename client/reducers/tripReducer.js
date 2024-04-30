@@ -10,7 +10,7 @@ const initialState = {
   endDate: endDate.toISOString().slice(0, 10),
   activities: [],
   budget: 1000,
-  hotelBudget: 1000,
+  hotelBudget: 2000,
   travelers: 1,
   groupDescription: 'Solo traveler',
 };
