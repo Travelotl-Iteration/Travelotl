@@ -29,13 +29,24 @@ const Activity = ({ activity, description, address, day, index, onDrop }) => {
 
   return (
     <div className='activity' ref={drag} style={{opacity: isDragging ? 0.5 : 1, cursor: 'move'}}>
-      <div ref={drop} style={{ backgroundColor: isOver ? 'grey' : 'transparent', height: '100px', marginTop: '10px' }}>
-        <h3>Activity: {activity}</h3>
-        <h3>Description: {description}</h3>
-        <h3>Address: {address}</h3>
+      <div ref={drop} style={{ backgroundColor: isOver ? 'grey' : 'transparent', height: 'auto', marginTop: '10px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ margin: '0', marginRight: '5px' }}>Activity:</h3>
+          <p style={{ margin: '0' }}>{activity}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ margin: '0', marginRight: '5px' }}>Description:</h3>
+          <p style={{ margin: '0' }}>{description}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ margin: '0', marginRight: '5px' }}>Address:</h3>
+          <p style={{ margin: '0' }}>{address}</p>
+        </div>
       </div>
-    </ div>
-  ); 
+    </div>
+  );
+  
+  
 };
 
 export default Activity;

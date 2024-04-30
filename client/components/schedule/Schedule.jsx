@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import Day from './Day.jsx';
 
 const Schedule = () => {
@@ -29,9 +31,11 @@ const Schedule = () => {
   }
 
   return (
-    <div className='schedule'>
-      {days}
-    </ div>
+    <DndProvider backend={HTML5Backend}>
+      <div className='scheduleContainer'>
+        {days}
+      </ div>
+    </DndProvider>
   ); 
 };
 
