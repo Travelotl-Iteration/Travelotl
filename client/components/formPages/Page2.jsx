@@ -27,7 +27,7 @@ const Page2 = () => {
   };
 
   return (
-    <div className="bg-gray-300 rounded border-4 border-black">
+    <div className="bg-gray-300 rounded border-4 border-black w-[50%]">
       <div>
         <label className='text-2xl' htmlFor="startDate">
           Start Date:

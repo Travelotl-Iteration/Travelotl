@@ -21,6 +21,7 @@ import Page4 from './components/formPages/Page4';
 import ItineraryPage from './components/ItineraryPage';
 import Register from './components/Register';
 import '../styles.css';
+import MapUI from './components/mapView';
 
 export const store = configureStore({
   reducer: {
@@ -52,6 +53,7 @@ createRoot(root).render(
             </Route>
           </Route>
           <Route path="/itinerary" element={<ItineraryPage />} />
+          <Route path="/map" element={<MapUI />} />
         </Routes>
       </Router>
     </Provider>
