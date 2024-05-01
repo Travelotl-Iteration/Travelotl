@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from "./Header";
 import Cookies from 'js-cookie';
 
+
 const Manager = () => {
   const [itineraries, setItineraries] = useState([]);
   const dispatch = useDispatch();
