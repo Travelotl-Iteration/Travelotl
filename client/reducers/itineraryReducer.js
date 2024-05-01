@@ -7,6 +7,12 @@ const itinerarySlice = createSlice({
   initialState,
   reducers: {
     updateItinerary(state, action) {
+      state.itinerary = action.payload.itinerary;
+      state.hotels = action.payload.hotels
+      console.log('in reducer state: ',state.hotels)
+    },
+    
+    itineraryRetrieved(state, action) {
       state.itinerary = action.payload.foundTrip.itinerary;
       console.log('updateItinerary tripId', action.payload.tripId)
       state.id = action.payload.tripId;
@@ -25,5 +31,5 @@ const itinerarySlice = createSlice({
 });
 
 export const { actions, reducer } = itinerarySlice;
-export const { updateItinerary, itineraryRearranged } = actions;
+export const { updateItinerary, itineraryRearranged, itineraryRetrieved } = actions;
 export default reducer;

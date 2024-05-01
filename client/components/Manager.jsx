@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { updateItinerary } from "../reducers/itineraryReducer";
+import { itineraryRetrieved } from "../reducers/itineraryReducer";
 import { Link, useNavigate } from 'react-router-dom';
 import Header from "./Header";
 import Cookies from 'js-cookie';
@@ -80,7 +80,7 @@ const Manager = () => {
       }
       console.log("See Details of:", foundTrip);
       if (foundTrip) {
-        dispatch(updateItinerary({foundTrip, tripId}));
+        dispatch(itineraryRetrieved({foundTrip, tripId}));
         navigate('/itinerary');
       }
       
