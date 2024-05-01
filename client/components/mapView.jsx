@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { APIProvider, Map, } from '@vis.gl/react-google-maps';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 // import { Marker } from 'react-google-maps';
 // import { connect } from 'react-redux';
 // import { GoogleApiWrapper, InfoWrapper, Map, Marker} from 'google-map-react'

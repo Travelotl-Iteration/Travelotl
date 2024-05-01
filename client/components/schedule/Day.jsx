@@ -13,8 +13,8 @@ const Day = ({day, activities}) => {
 
   const activitiesArray = [];
 
-  activities.forEach(activity => {
-    activitiesArray.push(<Activity activity={activity.activity} description={activity.description} address={activity.address}/>)
+  activities.forEach((activity, index) => {
+    activitiesArray.push(<Activity activity={activity.activity} description={activity.description} address={activity.address} day={day} index={index} />)
   })
 
   return (

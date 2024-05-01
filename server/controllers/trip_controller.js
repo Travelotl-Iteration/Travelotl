@@ -108,6 +108,17 @@ const tripController = {
       })
   },
 
+  // Update trip itinerary in database
+  patchTrip(req, res, next) {
+    const {itinerary, hotels, tripId} = req.body;
+    const tripObj = { itinerary: itinerary, hotels: hotels };
+    Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
+      .then(result => {
+        next();
+      })
+      .catch (err => {console.log('Error updating trip in DB: ', err)});
+  },
+
   // retrieveAll - To retrieve all trips saved for a specific user
   retrieveAll(req, res, next) {
     console.log('user', res.locals.user)

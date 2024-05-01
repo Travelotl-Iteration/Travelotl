@@ -10,6 +10,11 @@ router.post('/build', (req, res, next)=>{
   res.status(201).send(res.locals.itinerary);
 });
 
+router.patch('/build',  
+  tripController.patchTrip,
+  (req, res) => res.status(200).json('Itinerary updated')
+)
+
 router.get('/retrieve', authController.protect, tripController.retrieveAll, (req, res) => {
   // console.log(res.locals.allTrips[0]._id);
   res.status(200).json(res.locals.allTrips);
