@@ -22,7 +22,7 @@ const Page1 = () => {
   };
 
   return (
-    <div className="bg-gray-300 rounded border-4 border-black">
+    <div className="bg-gray-300 rounded border-4 border-black w-[50%]">
       <label className='text-2xl' htmlFor="destination">
         Destination:
       </label>

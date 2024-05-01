@@ -1,19 +1,35 @@
 import React from 'react';
 import { ItemTypes } from './Constants.js';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
+import { useDispatch } from 'react-redux';
+import { itineraryRearranged } from '../../reducers/itineraryReducer.js';
 import ActivityModal from '../ActivityModal.jsx';
 
 
-const Activity = (props) => {
+const Activity = ({ activity, description, address, day, index, onDrop, zipcode }) => {
+
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = React.useState(false);
   const [activityData, setActivityData] = React.useState([]);
 
   const [{isDragging}, drag] = useDrag(() => ({
     type: ItemTypes.ACTIVITY,
+    item: { day, index },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
     }),
   }))
+
+  const [{isOver}, drop] = useDrop(() => ({
+      accept: ItemTypes.ACTIVITY,
+      drop: (item) => {
+        dispatch(itineraryRearranged({droppedDay: item.day, droppedIndex: item.index, ontoDay: day, ontoIndex: index}))
+      },
+      collect: monitor => ({
+        isOver: !!monitor.isOver(),
+      }),
+    })
+  )
 
   const handleClick = (e, activity, zipcode) => {
     const body = {}
@@ -36,19 +52,27 @@ const Activity = (props) => {
   }
 
     console.log('show modal', showModal)
-    console.log('props', props)
   return (
-    <>
     <div className='activity' ref={drag} style={{opacity: isDragging ? 0.5 : 1, cursor: 'move'}}>
-      <h3>Activity: {props.activity}</h3>
-      <h3>Description: {props.description}</h3>
-      {/* <h3>Place Name: {props.placeName}</h3> */}
-      <h3 onClick={e => handleClick(e, props.activity, props.zipcode)}>Address: {props.address}</h3>
-      {/* <h3>Zipcode: {props.zipcode}</h3> */}
-    </ div>
-    {showModal && <ActivityModal activityData={activityData} setShowModal={setShowModal}></ActivityModal>}
-    </>
-  ); 
+      <div ref={drop} style={{ backgroundColor: isOver ? 'grey' : 'transparent', height: 'auto', marginTop: '10px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ margin: '0', marginRight: '5px' }}>Activity:</h3>
+          <p style={{ margin: '0' }}>{activity}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ margin: '0', marginRight: '5px' }}>Description:</h3>
+          <p style={{ margin: '0' }}>{description}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ margin: '0', marginRight: '5px' }}>Address:</h3>
+          <p style={{ margin: '0' }} onClick={e => handleClick(e, activity, zipcode)}>{address}</p>
+        </div>
+        {showModal && <ActivityModal activityData={activityData} setShowModal={setShowModal}></ActivityModal>}
+      </div>
+    </div>
+  );
+  
+  
 };
 
 export default Activity;

@@ -12,7 +12,7 @@ const tripController = {
   // buildTrip - To fetch itinerary from API request to Open AI
   async buildTrip(req, res, next) {
     console.log("buildTrip invoked");
-    const { destination, startDate, endDate, activities, budget, hotelBudget } = req.body;
+    const { destination, startDate, endDate, budget, hotelBudget } = req.body;
     res.locals.tripName = `${destination} from ${startDate} to ${endDate}`;
     // Update prompt below to reflect req.body information - DONE (J.H.)
     const parsedEndDate = Date.parse(endDate)
@@ -24,11 +24,12 @@ const tripController = {
     // const prompt = `Make an itinerary for a honeymoon to ${destination} from ${startDate} until ${endDate}.` +  
     const prompt = `Make an itinerary for a honeymoon to ${destination} for ${timeDiff} days` +
     `I do not want to spend more than ${budget} dollars on activities and ${hotelBudget} on hotels.` +
-    `Include the following types of attractions: ${activities.join(', ')}` +
-    `Organize the itinerary by the following times of day: morning, afternoon, and evening.`+
-    `Recommend specific places of interest with their addresses and zipcodes or postal codes as well as a short description` +
+    `Organize the itinerary by the following times of day: morning and evening.`+
+    `Recommend specific places of interest with their specific addresses and zipcodes or postal codes as well as a short description` +
     `Limit cross-city commutes by grouping places of interest by geography for each day. Please provide three hotel suggestions. ` + 
     `Give the names of the hotels with their addresses and their zipcodes or postal codes.` +
+    `Please provide seven restaurant suggestions. ` + 
+    `Give the names of the restaurants with their addresses and their zipcodes or postal codes.` +
      `Output the response in json format following this schema:
      {
         itinerary: {
@@ -41,6 +42,11 @@ const tripController = {
          }]
         },
         hotels: [{
+          name: string
+          address: string
+          zipcode: string
+          }]
+        restaurants: [{
           name: string
           address: string
           zipcode: string
@@ -109,6 +115,17 @@ const tripController = {
         console.log("could not locate itinerary based on id passed in - deleteTrip middleware");
         console.error("deleteTrip ERROR =>", err);
       })
+  },
+
+  // Update trip itinerary in database
+  patchTrip(req, res, next) {
+    const {itinerary, hotels, tripId} = req.body;
+    const tripObj = { itinerary: itinerary, hotels: hotels };
+    Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
+      .then(result => {
+        next();
+      })
+      .catch (err => {console.log('Error updating trip in DB: ', err)});
   },
 
   // retrieveAll - To retrieve all trips saved for a specific user

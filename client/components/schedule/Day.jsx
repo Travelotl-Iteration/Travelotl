@@ -13,9 +13,9 @@ const Day = ({day, activities}) => {
 
   const activitiesArray = [];
 
-  activities.forEach(activity => {
+  activities.forEach((activity, index) => {
     activitiesArray.push(<Activity activity={activity.placeName} 
-      description={activity.description} address={activity.address} zipcode={activity.zipcode}/>)
+      description={activity.description} address={activity.address} zipcode={activity.zipcode} day={day} index={index} />)
   })
 
   console.log('activites', activities)

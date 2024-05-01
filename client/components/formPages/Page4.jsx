@@ -58,7 +58,7 @@ const Page4 = () => {
   };
 
   return (
-    <div className="bg-gray-300 rounded border-4 border-black">
+    <div className="bg-gray-300 rounded border-4 border-black w-[50%]">
       <div>
         <label className='text-2xl' htmlFor="budget">
           Budget:
@@ -88,7 +88,7 @@ const Page4 = () => {
         loading ? <div id='loader'><Loader/></div> :
         <>
           <div>
-            <Link to='/form/page3'>
+            <Link to='/form/page2'>
               <button className='m-4 underline text-blue-600' type='button'>Back</button>
             </Link>
             <button className='m-4 underline text-blue-600' type='submit' onClick={handleClick}>Submit</button>
