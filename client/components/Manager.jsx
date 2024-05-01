@@ -25,6 +25,7 @@ const Manager = () => {
     };
 
     const jwt = Cookies.get('jwt');
+   
     if (!jwt) navigate('/login')
     else {
       setJwt(jwt);

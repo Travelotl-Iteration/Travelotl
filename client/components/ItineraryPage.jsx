@@ -7,7 +7,9 @@ const ItineraryPage = () => {
   const itinerary = useSelector(state => state.itinerary.itinerary);
   const hotels = useSelector(state => state.itinerary.hotels);
   const navigate = useNavigate();
-  const mapViewClick = () => {
+
+  const mapViewClick = (e) => {
+    e.preventDefault();
     console.log('clicked');
     navigate('/map');
   };
@@ -18,8 +20,8 @@ const ItineraryPage = () => {
     <div>
       <Header />
       <h2>Your Itinerary</h2>
+      <button onClick={mapViewClick} className="text-right">Map View</button>
       <Itinerary itinerary={itinerary} hotels={hotels} />
-      <button onClick={mapViewClick}>Map View</button>
     </div>
   );
 };
