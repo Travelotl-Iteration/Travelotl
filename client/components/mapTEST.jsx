@@ -92,3 +92,24 @@ export default MapUI;
 // ];
 
 // export default enhance(MapUI);
+
+
+
+// const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
+// import { Marker } from 'react-google-maps';
+// import { connect } from 'react-redux';
+// import { GoogleApiWrapper, InfoWrapper, Map, Marker} from 'google-map-react'
+// const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
+// const MyComponent = () => {
+//   const map = useMap();
+
+//   useEffect(() => {
+//     if (!map) return;
+
+//     // here you can interact with the imperative maps API
+//   }, [map]);
+
+//   return <></>;
+// };
