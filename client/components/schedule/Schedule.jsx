@@ -10,8 +10,11 @@ const Schedule = () => {
   const days = [];
 
   for (const day in itinerary) {
+    console.log('day is', day)
     days.push(<Day day={day} activities={itinerary[day]} />)
   }
+
+  console.log('itenerary is ', itinerary)
 
   return (
     <div className='schedule'>
