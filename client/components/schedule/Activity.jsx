@@ -1,10 +1,11 @@
 import React from 'react';
 import { ItemTypes } from './Constants.js';
 import { useDrag, useDrop } from 'react-dnd';
-import { useDispatch } from 'react-redux';
-import { itineraryRearranged } from '../../reducers/itineraryReducer.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { itineraryActivityReplaced, itineraryRearranged } from '../../reducers/itineraryReducer.js';
 
 const Activity = ({ activity, description, address, day, index, onDrop }) => {
+  const itinerary = useSelector(state => state.itinerary.itinerary)
 
   const dispatch = useDispatch();
 
@@ -27,9 +28,24 @@ const Activity = ({ activity, description, address, day, index, onDrop }) => {
     })
   )
 
+  const handleDeleteClick = async () => {
+    // make a request to back end to query new activity
+    try {
+      const response = await fetch('/api/trip/newActivity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({itinerary, activity, description, address})
+      });
+      const activityObj = await response.json();
+      dispatch(itineraryActivityReplaced({ activityObj, day, index }));
+    } catch (error) { console.log('Error in fetch request to newActivity :', error) };
+
+  };
+
   return (
     <div className='activity' ref={drag} style={{opacity: isDragging ? 0.5 : 1, cursor: 'move'}}>
       <div ref={drop} style={{ backgroundColor: isOver ? 'grey' : 'transparent', height: 'auto', marginTop: '10px', display: 'flex', flexDirection: 'column' }}>
+        <button onClick={handleDeleteClick}>X</button>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <h3 style={{ margin: '0', marginRight: '5px' }}>Activity:</h3>
           <p style={{ margin: '0' }}>{activity}</p>

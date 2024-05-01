@@ -185,6 +185,7 @@
 
 /* Activity Card */
 .activity {
+  position: relative;
   display: flex;
   min-height: auto;
   background-color: rgb(255, 235, 216); /* Lighter background for activities */
@@ -198,6 +199,13 @@
 /* Hover Effect for Activity Card */
 .activity:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.activity button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #555;
 }
 
 /* Title for Activity */
@@ -227,7 +235,7 @@
 .menu {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   top: -280px;
   left: -250px; /* Start off-screen */
   width: 250px;
@@ -238,6 +246,7 @@
   color: #ecf0f1; /* Text color */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
   transition: top 0.3s, left 0.3s ease; /* Smooth transition when sliding in */
+  z-index: 10;
 }
 
 .menu.open {
