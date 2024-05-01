@@ -231,6 +231,19 @@
   color: #777; /* Lighter color for description */
 }
 
+/* Loader for Activity Cards */
+.activityLoader {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.loaderVideo {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
 /* Styling for the ItineraryPage Menu */
 .menu {
   display: flex;
