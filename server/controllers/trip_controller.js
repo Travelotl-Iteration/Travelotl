@@ -77,6 +77,10 @@ const tripController = {
 
   // saveTrip - To save the contents of the generated itinerary into the database
   saveTrip(req, res, next) {
+    console.log("req body")
+    console.log(req.body)
+    console.log("res locals")
+    console.log(res.locals.itinerary)
     // const { email } = req.body;
     Itinerary.create({
       // email: req.body.email,
@@ -85,7 +89,6 @@ const tripController = {
       destination: req.body.destination,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      hotel: req.body.hotel,
       trip: JSON.stringify(res.locals.itinerary),
     })
       .then (result => {
@@ -119,8 +122,10 @@ const tripController = {
 
   // Update trip itinerary in database
   patchTrip(req, res, next) {
-    const {itinerary, hotels, tripId} = req.body;
-    const tripObj = { itinerary: itinerary, hotels: hotels };
+    console.log("patch request")
+    console.log(req.body)
+    const {itinerary, hotels, restaurants, tripId} = req.body;
+    const tripObj = { itinerary: itinerary, hotels: hotels, restaurants: restaurants };
     Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
       .then(result => {
         next();

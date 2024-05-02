@@ -44,6 +44,7 @@ app.post('/getInfo', (req,res) => {
     .then(res => res.json())
     .then(data => {
       console.log('data', data)
+      if (data.data.length == 0) {res.sendStatus(500)}
       const dataURL = `https://api.content.tripadvisor.com/api/v1/location/${data.data[0].location_id}/details?language=en&currency=USD&key=FDAAA163EC34403D9E9B38D6C9522965`;
       const options = {method: 'GET', headers: {accept: 'application/json'}};
       return fetch(dataURL, options)})

@@ -4,6 +4,8 @@ import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import { itineraryRearranged } from '../../reducers/itineraryReducer.js';
 import ActivityModal from '../ActivityModal.jsx';
+import NoDataModal from '../NoDataModal.jsx';
+
 
 
 const Activity = ({ activity, description, address, day, index, onDrop, zipcode }) => {
@@ -11,6 +13,8 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = React.useState(false);
   const [activityData, setActivityData] = React.useState([]);
+  const [hasNoData, setHasNoData] = React.useState(false);
+
 
   const [{isDragging}, drag] = useDrag(() => ({
     type: ItemTypes.ACTIVITY,
@@ -44,10 +48,19 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
       },
       body: JSON.stringify(body)
     })
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.status == 500) {
+        setShowModal(true)
+        setHasNoData(true)
+        return
+      }
+      return resp.json()
+    })
     .then((data) => {
+      console.log('data is', data)
       setActivityData([data.name, data.ranking_data.ranking_string, data.price_level, data.rating])
       setShowModal(true)
+      setHasNoData(false)
     })
   }
 
@@ -67,7 +80,8 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
           <h3 style={{ margin: '0', marginRight: '5px' }}>Address:</h3>
           <p style={{ margin: '0' }} onClick={e => handleClick(e, activity, zipcode)}>{address}</p>
         </div>
-        {showModal && <ActivityModal activityData={activityData} setShowModal={setShowModal}></ActivityModal>}
+        {showModal && hasNoData && <NoDataModal setShowModal={setShowModal}></NoDataModal>}
+        {showModal && !hasNoData && <ActivityModal activityData={activityData} setShowModal={setShowModal}></ActivityModal>}
       </div>
     </div>
   );

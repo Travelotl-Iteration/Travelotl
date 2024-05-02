@@ -16,7 +16,8 @@ router.patch('/build',
 )
 
 router.get('/retrieve', authController.protect, tripController.retrieveAll, (req, res) => {
-  // console.log(res.locals.allTrips[0]._id);
+  //console.log("first trip in retrieve")
+  //console.log(res.locals.allTrips[0]);
   res.status(200).json(res.locals.allTrips);
 });
 

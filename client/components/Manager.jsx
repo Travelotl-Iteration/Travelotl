@@ -67,7 +67,7 @@ const Manager = () => {
 
       itineraryList = await itineraryList.json();
 
-      // console.log(itineraryList);
+      console.log('itin list: ', itineraryList);
 
       let foundTrip;
       for (const trip of itineraryList) {
