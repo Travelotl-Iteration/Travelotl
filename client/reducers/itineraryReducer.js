@@ -30,7 +30,7 @@ const itinerarySlice = createSlice({
 
     itineraryActivityReplaced(state, action) {
       const {activityObj, day, index } = action.payload;
-      state.itinerary[day][index].activity = activityObj.activity;
+      state.itinerary[day][index].placeName = activityObj.placeName;
       state.itinerary[day][index].description = activityObj.description;
       state.itinerary[day][index].address = activityObj.address;
       console.log('In reducer', state.itinerary[day][index])

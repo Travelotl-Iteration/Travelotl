@@ -83,7 +83,7 @@ const tripController = {
                     and a location ${address} with a different activity. I would like the activity to fit the location and theme of the current
                     trip that I showed you the itinerary for.
                     Please output the response in JSON format following this schema:
-                    {activity: string,
+                    {placeName: string,
                      description: string,
                      address: string}
                     Thank you, I'm so excited for my honeymoon.`
