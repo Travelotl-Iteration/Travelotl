@@ -18,7 +18,6 @@ const Day = ({day, activities}) => {
       description={activity.description} address={activity.address} zipcode={activity.zipcode} day={day} index={index} />)
   })
 
-  console.log('activites', activities)
   return (
     <div className='day'>
       <h1 className='dayHeader' onClick={handleClick}>{day}</h1>

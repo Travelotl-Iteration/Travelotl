@@ -75,6 +75,33 @@ const tripController = {
     }
   },
 
+  // Build a new individual activity within a trip
+  async buildNewActivity(req, res, next) {
+    const {itinerary, activity, description, address} = req.body;
+    const prompt = `Thank you so much for helping me plan my honeymoon. This is the current itinerary you generated for me: ${itinerary}. 
+                    I would like make a slight change. I would like to replace the activity ${activity} that has a description ${description}
+                    and a location ${address} with a different activity. I would like the activity to fit the location and theme of the current
+                    trip that I showed you the itinerary for.
+                    Please output the response in JSON format following this schema:
+                    {placeName: string,
+                     description: string,
+                     address: string}
+                    Thank you, I'm so excited for my honeymoon.`
+    try {
+      const completion = await openai.chat.completions.create({
+        messages: [{"role": "system", "content": "You are a helpful travel planning assistant."},
+            {
+              "role": "user", 
+              "content": prompt,
+            }],
+        model: "gpt-3.5-turbo",
+        response_format: { type: "json_object" },
+      });
+      res.locals.newActivity = JSON.parse(completion.choices[0].message.content);
+      return next();
+    } catch (error) { console.log('Error in buildNewActivity: ', error)};
+  },
+
   // saveTrip - To save the contents of the generated itinerary into the database
   saveTrip(req, res, next) {
     // const { email } = req.body;
@@ -119,8 +146,8 @@ const tripController = {
 
   // Update trip itinerary in database
   patchTrip(req, res, next) {
-    const {itinerary, hotels, tripId} = req.body;
-    const tripObj = { itinerary: itinerary, hotels: hotels };
+    const {itinerary, hotels, restaurants, tripId} = req.body;
+    const tripObj = { itinerary: itinerary, hotels: hotels, restaurants: restaurants };
     Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
       .then(result => {
         next();
