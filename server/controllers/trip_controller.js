@@ -146,8 +146,8 @@ const tripController = {
 
   // Update trip itinerary in database
   patchTrip(req, res, next) {
-    const {itinerary, hotels, tripId} = req.body;
-    const tripObj = { itinerary: itinerary, hotels: hotels };
+    const {itinerary, hotels, restaurants, tripId} = req.body;
+    const tripObj = { itinerary: itinerary, hotels: hotels, restaurants: restaurants };
     Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
       .then(result => {
         next();

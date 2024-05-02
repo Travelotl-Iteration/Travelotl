@@ -43,13 +43,10 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
         body: JSON.stringify({itinerary, activity, description, address})
       });
       const activityObj = await response.json();
-      console.log('activityObj', activityObj)
       setLoading(false);
       dispatch(itineraryActivityReplaced({ activityObj, day, index }));
     } catch (error) { console.log('Error in fetch request to newActivity :', error) };
   };
-
-  console.log('itinerary', itinerary);
 
   const handleClick = (e, activity, zipcode) => {
     const body = {}
@@ -71,7 +68,6 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
     })
   }
 
-    console.log('show modal', showModal)
   return (
     <>
       <div className='activity' ref={drag} style={{opacity: isDragging ? 0.5 : 1, cursor: 'move'}}>

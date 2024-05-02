@@ -6,9 +6,6 @@ const listSlice = createSlice({
   name: 'list',
   initialState,
   reducers: {
-    // updateItinerary(state, action) {
-    //   state.itinerary = action.payload;
-    // },
     deleteTrip (state, action) {
       state.push(action.payload)
     }
