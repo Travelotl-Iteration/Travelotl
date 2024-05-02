@@ -3,7 +3,7 @@ import HotelModal from './HotelModal.jsx';
 import Schedule from './schedule/Schedule.jsx';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
+import MyMapComponent from "./mapView.jsx";
 
 const Itinerary = (props) => {
 
@@ -79,6 +79,8 @@ const Itinerary = (props) => {
       </div> }
     {/* </div> */}
     {showModal && <HotelModal hotelData={hotelData} setShowModal={setShowModal}></HotelModal>}
+   
+
   </DndProvider>
   );
 };

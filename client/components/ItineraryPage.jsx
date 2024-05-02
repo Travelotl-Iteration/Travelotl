@@ -20,7 +20,7 @@ const ItineraryPage = () => {
     <div>
       <Header />
       <h2>Your Itinerary</h2>
-      <button onClick={mapViewClick} className="text-right">Map View</button>
+      <button onClick={mapViewClick} className="text-right" itinerary={itinerary}>Map View</button>
       <Itinerary itinerary={itinerary} hotels={hotels} />
     </div>
   );
