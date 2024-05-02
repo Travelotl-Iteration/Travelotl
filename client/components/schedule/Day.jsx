@@ -14,9 +14,11 @@ const Day = ({day, activities}) => {
   const activitiesArray = [];
 
   activities.forEach((activity, index) => {
-    activitiesArray.push(<Activity activity={activity.activity} description={activity.description} address={activity.address} day={day} index={index} />)
+    activitiesArray.push(<Activity activity={activity.placeName} 
+      description={activity.description} address={activity.address} zipcode={activity.zipcode} day={day} index={index} />)
   })
 
+  console.log('activites', activities)
   return (
     <div className='day'>
       <h1 className='dayHeader' onClick={handleClick}>{day}</h1>

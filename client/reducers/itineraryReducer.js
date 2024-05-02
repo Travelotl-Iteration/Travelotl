@@ -9,6 +9,7 @@ const itinerarySlice = createSlice({
     updateItinerary(state, action) {
       state.itinerary = action.payload.itinerary;
       state.hotels = action.payload.hotels
+      state.restaurants = action.payload.restaurants
       console.log('in reducer state: ',state.hotels)
     },
     
@@ -16,6 +17,8 @@ const itinerarySlice = createSlice({
       state.itinerary = action.payload.foundTrip.itinerary;
       state.id = action.payload.tripId;
       state.hotels = action.payload.foundTrip.hotels
+      state.restaurants = action.payload.foundTrip.restaurants
+      console.log('in reducer state: ',state.hotels)
     },
 
     itineraryRearranged(state, action) {

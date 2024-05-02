@@ -4,11 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { IoMenu } from "react-icons/io5";
 import Schedule from './schedule/Schedule';
 import Hotels from './hotels/Hotels';
+import Restaurants from './restaurants/Restaurants';
+
 
 const ItineraryPage = () => {
   const itinerary = useSelector(state => state.itinerary.itinerary);
   const hotels = useSelector(state => state.itinerary.hotels);
+  const restaurants = useSelector(state => state.itinerary.restaurants);
 
+  console.log('restaurants are', restaurants)
   const [scheduleClicked, setScheduleClicked] = useState(true);
   const [hotelsClicked, setHotelsClicked] = useState(false);
   const [restaurantsClicked, setRestaurantsClicked] = useState(false);
@@ -56,6 +60,7 @@ const ItineraryPage = () => {
       </div>
       {scheduleClicked && <Schedule />}
       {hotelsClicked && <Hotels hotels={hotels} />}
+      {restaurantsClicked && <Restaurants restaurants={restaurants} />}
     </div>
   );
 };
