@@ -16,7 +16,7 @@ import Login from './components/Login';
 import Form from './components/Form';
 import Page1 from './components/formPages/Page1';
 import Page2 from './components/formPages/Page2';
-import Page3 from './components/formPages/Page3';
+// import Page3 from './components/formPages/Page3';
 import Page4 from './components/formPages/Page4';
 import ItineraryPage from './components/ItineraryPage';
 import Register from './components/Register';
@@ -48,7 +48,7 @@ createRoot(root).render(
             <Route path="/form" element={<Form />}>
               <Route index element={<Page1 />} />
               <Route path="/form/page2" element={<Page2 />} />
-              <Route path="/form/page3" element={<Page3 />} />
+              {/* <Route path="/form/page3" element={<Page3 />} /> */}
               <Route path="/form/page4" element={<Page4 />} />
             </Route>
           </Route>
