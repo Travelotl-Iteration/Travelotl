@@ -7,8 +7,8 @@ import Day from './Day.jsx';
 const Schedule = () => {
   const itinerary = useSelector(state => state.itinerary.itinerary);
   const tripId = useSelector(state => state.itinerary.id);
-  const hotels = useSelector(state => state.itinerary.hotels)
-  const restaurants = useSelector(state => state.itinerary.restaurants)
+  const hotels = useSelector(state => state.itinerary.hotels);
+  const restaurants = useSelector(state => state.itinerary.restaurants);
 
   useEffect(() => {
     const patchItinerary = async () => {
@@ -16,10 +16,9 @@ const Schedule = () => {
         let response = await fetch('/api/trip/build', {  
           method: 'PATCH',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({itinerary, hotels, restaurants, tripId})
+          body: JSON.stringify({itinerary, hotels,restaurants, tripId})
         })
         response = await response.json();
-        console.log(response);
       } catch (error) { console.error('Error trying to patch itinerary: ', error) }
     }
     patchItinerary();
@@ -28,11 +27,8 @@ const Schedule = () => {
   const days = [];
 
   for (const day in itinerary) {
-    console.log('day is', day)
     days.push(<Day day={day} activities={itinerary[day]} />)
   }
-
-  console.log('itenerary is ', itinerary)
 
   return (
     <DndProvider backend={HTML5Backend}>
