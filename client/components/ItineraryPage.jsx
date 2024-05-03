@@ -45,24 +45,17 @@ const ItineraryPage = () => {
     setHotelsClicked(false);
     setRestaurantsClicked(true);
   }
-
-  console.log('restaurants are', restaurants)
-
+  const mapViewClick = (e) => {
+    e.preventDefault();
+    console.log('clicked');
+    navigate('/map');
+  };
   return (
-    <div onClick={closeMenu} className='itineraryPage'>
-      <div style={{ position: 'relative' }} >
-        <IoMenu style={{ position: 'absolute', fontSize: '2.5em', color: '#4c4c4c', margin: '10px'}} onClick={toggleMenu} />
-        <div className={`menu ${menuOpen ? 'open' : ''}`}>
-          <button onClick={() => navigate('/manager')}>Home</button>
-          <button onClick={handleScheduleClick}>Schedule</button>
-          <button onClick={handleHotelsClick}>Hotels</button>
-          <button onClick={handleRestaurantsClick}>Restaurants</button>
-          <button onClick={() => navigate('/map')}>Map</button>
-        </div>
-      </div>
-      {scheduleClicked && <Schedule />}
-      {hotelsClicked && <Hotels hotels={hotels} />}
-      {restaurantsClicked && <Restaurants restaurants={restaurants} />}
+    <div>
+      <Header />
+      <h2>Your Itinerary</h2>
+      <Itinerary itinerary={itinerary} hotels={hotels} />
+      <button onClick={mapViewClick} itinerary={itinerary}>Map View</button>
     </div>
   );
 };
