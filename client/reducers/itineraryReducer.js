@@ -32,6 +32,7 @@ const itinerarySlice = createSlice({
       state.itinerary[day][index].placeName = activityObj.placeName;
       state.itinerary[day][index].description = activityObj.description;
       state.itinerary[day][index].address = activityObj.address;
+      state.itinerary[day][index].zipcode = activityObj.zipcode;
     }
   },
 });

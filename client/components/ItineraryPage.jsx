@@ -46,6 +46,8 @@ const ItineraryPage = () => {
     setRestaurantsClicked(true);
   }
 
+  console.log('restaurants are', restaurants)
+
   return (
     <div onClick={closeMenu} className='itineraryPage'>
       <div style={{ position: 'relative' }} >
