@@ -14,8 +14,6 @@
     "server": "nodemon ./server/server.js"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.6",
-    "@react-google-maps/api": "^2.19.3",
     "@react-spring/web": "^9.7.3",
     "@reduxjs/toolkit": "^2.2.2",
     "@rollup/rollup-darwin-arm64": "^4.17.1",

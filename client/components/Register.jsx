@@ -25,22 +25,33 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div>
         <Header />
-    <div className="form-container">
-      <form onSubmit={handleSubmit} method='post' action='submit' id='register-form' className="login-form">
-        {/* <label htmlFor="firstName">First Name:</label>
-        <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <label htmlFor="lastName">Last Name:</label>
-        <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} /> */}
-        <label htmlFor="email">Email:</label>
-        <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Register</button>
+    
+      <form onSubmit={handleSubmit} method='post' action='submit' id='registerForm' className="register-page">
+        <label>
+          First Name:
+          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Last Name:
+          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="space-y-4"/>
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <br />
+        <button type="submit" id="register-button">Register</button>
       </form>
     </div>
-    </>
   );
 };
 
