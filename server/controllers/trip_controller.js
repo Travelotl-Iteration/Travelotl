@@ -83,9 +83,10 @@ const tripController = {
                     and a location ${address} with a different activity. I would like the activity to fit the location and theme of the current
                     trip that I showed you the itinerary for.
                     Please output the response in JSON format following this schema:
-                    {activity: string,
+                    {placeName: string,
                      description: string,
-                     address: string}
+                     address: string,
+                     zipcode: string}
                     Thank you, I'm so excited for my honeymoon.`
     try {
       const completion = await openai.chat.completions.create({
@@ -104,6 +105,10 @@ const tripController = {
 
   // saveTrip - To save the contents of the generated itinerary into the database
   saveTrip(req, res, next) {
+    console.log("req body")
+    console.log(req.body)
+    console.log("res locals")
+    console.log(res.locals.itinerary)
     // const { email } = req.body;
     Itinerary.create({
       // email: req.body.email,
@@ -112,7 +117,6 @@ const tripController = {
       destination: req.body.destination,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      hotel: req.body.hotel,
       trip: JSON.stringify(res.locals.itinerary),
     })
       .then (result => {
@@ -146,8 +150,8 @@ const tripController = {
 
   // Update trip itinerary in database
   patchTrip(req, res, next) {
-    const {itinerary, hotels, tripId} = req.body;
-    const tripObj = { itinerary: itinerary, hotels: hotels };
+    const {itinerary, hotels, restaurants, tripId} = req.body;
+    const tripObj = { itinerary: itinerary, hotels: hotels, restaurants: restaurants };
     Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
       .then(result => {
         next();

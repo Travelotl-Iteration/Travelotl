@@ -21,7 +21,6 @@ router.post('/newActivity',
 )
 
 router.get('/retrieve', authController.protect, tripController.retrieveAll, (req, res) => {
-  // console.log(res.locals.allTrips[0]._id);
   res.status(200).json(res.locals.allTrips);
 });
 

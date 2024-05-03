@@ -1,10 +1,14 @@
 import React from "react";
 import HotelModal from '../HotelModal.jsx';
 import Hotel from './Hotel.jsx';
+import NoDataModal from '../NoDataModal.jsx';
+
 
 const Hotels = ({hotels}) => {
   const [showModal, setShowModal] = React.useState(false);
   const [hotelData, setHotelData] = React.useState([]);
+  const [hasNoData, setHasNoData] = React.useState(false);
+
   
   const handleClick = (e, name, zipcode) => {
     const body = {}
@@ -19,10 +23,18 @@ const Hotels = ({hotels}) => {
         },
         body: JSON.stringify(body)
       })
-      .then(resp => resp.json())
+      .then(resp => {
+        if (resp.status == 500) {
+          setShowModal(true)
+          setHasNoData(true)
+          return
+        }
+        return resp.json()
+      })
       .then((data) => {
         setHotelData([data.name, data.ranking_data.ranking_string, data.price_level, data.rating])
         setShowModal(true)
+        setHasNoData(false)
       })
   }
 
@@ -33,9 +45,10 @@ const Hotels = ({hotels}) => {
   })  
 
   return (
-    <div className='hotelsContainer' >
+    <div className='hotelsContainer'>
       {hotelsArray}
-      {showModal && <HotelModal hotelData={hotelData} setShowModal={setShowModal}></HotelModal>}
+      {showModal && hasNoData && <NoDataModal setShowModal={setShowModal}></NoDataModal>}
+      {showModal && !hasNoData && <HotelModal hotelData={hotelData} setShowModal={setShowModal}></HotelModal>}
     </div>
   );
 };

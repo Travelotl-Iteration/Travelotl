@@ -1,6 +1,5 @@
 import Header from "./Header";
 import { useNavigate } from 'react-router-dom';
-
 import React, { useState } from 'react';
 
 const Login = () => {
@@ -26,22 +25,17 @@ const Login = () => {
   };
 
   return (
-    <div >
-      <Header />
-      <form onSubmit={handleSubmit} className="login-page" id="login-form">
-        <label>
-          Email:
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit" id="login-button">Login</button>
+    <>
+    <Header />
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">        <label htmlFor="email">Email:</label>
+        <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit">Login</button>
       </form>
     </div>
+    </>
   );
 };
 

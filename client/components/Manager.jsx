@@ -26,6 +26,7 @@ const Manager = () => {
     };
 
     const jwt = Cookies.get('jwt');
+   
     if (!jwt) navigate('/login')
     else {
       setJwt(jwt);
@@ -67,19 +68,17 @@ const Manager = () => {
 
       itineraryList = await itineraryList.json();
 
-      // console.log(itineraryList);
-
       let foundTrip;
+
       for (const trip of itineraryList) {
-        // console.log(trip);
-        // console.log("Parse ID:", trip.tripId, "| Target ID:", tripId)
         if (trip._id === tripId) {
           foundTrip = JSON.parse(trip.trip);
           break;
         }
       }
-      console.log("See Details of:", foundTrip);
+  
       if (foundTrip) {
+        console.log('Found trip in seeDetails in Manager: ', foundTrip)
         dispatch(itineraryRetrieved({foundTrip, tripId}));
         navigate('/itinerary');
       }

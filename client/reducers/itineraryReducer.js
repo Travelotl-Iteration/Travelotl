@@ -10,7 +10,6 @@ const itinerarySlice = createSlice({
       state.itinerary = action.payload.itinerary;
       state.hotels = action.payload.hotels
       state.restaurants = action.payload.restaurants
-      console.log('in reducer state: ',state.hotels)
     },
     
     itineraryRetrieved(state, action) {
@@ -31,9 +30,10 @@ const itinerarySlice = createSlice({
 
     itineraryActivityReplaced(state, action) {
       const {activityObj, day, index } = action.payload;
-      state.itinerary[day][index].activity = activityObj.activity;
+      state.itinerary[day][index].placeName = activityObj.placeName;
       state.itinerary[day][index].description = activityObj.description;
       state.itinerary[day][index].address = activityObj.address;
+      state.itinerary[day][index].zipcode = activityObj.zipcode;
     }
   },
 });
