@@ -49,8 +49,8 @@ app.post('/getInfo', (req,res) => {
       return fetch(dataURL, options)})
     .then(res => res.json())
     .then(json => {
-        res.locals.hotelData = json
-        res.json(res.locals.hotelData)
+        res.locals.data = json
+        res.json(res.locals.data)
       })
     .catch(err => console.error('error:' + err))
 });

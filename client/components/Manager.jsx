@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { updateItinerary } from "../reducers/itineraryReducer";
+import { itineraryRetrieved } from "../reducers/itineraryReducer";
 import { Link, useNavigate } from 'react-router-dom';
 import Header from "./Header";
 import Cookies from 'js-cookie';
@@ -58,7 +58,6 @@ const Manager = () => {
 
   const seeDetails = async (e) => {
     const tripId = e.target.parentNode.parentNode.id;
-    console.log('trip id', tripId)
     try {
       let itineraryList = await fetch('api/trip/retrieve', {
         method: 'GET',
@@ -69,20 +68,18 @@ const Manager = () => {
 
       itineraryList = await itineraryList.json();
 
-      // console.log(itineraryList);
-
       let foundTrip;
+
       for (const trip of itineraryList) {
-        // console.log(trip);
-        // console.log("Parse ID:", trip.tripId, "| Target ID:", tripId)
         if (trip._id === tripId) {
           foundTrip = JSON.parse(trip.trip);
           break;
         }
       }
-      console.log("See Details of:", foundTrip);
+  
       if (foundTrip) {
-        dispatch(updateItinerary(foundTrip));
+        console.log('Found trip in seeDetails in Manager: ', foundTrip)
+        dispatch(itineraryRetrieved({foundTrip, tripId}));
         navigate('/itinerary');
       }
       

@@ -22,7 +22,7 @@ const Page2 = () => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      navigate('/form/page3');
+      navigate('/form/page4');
     }
   };
 
@@ -56,7 +56,7 @@ const Page2 = () => {
         <Link to='/form'>
           <button className='m-4 underline text-blue-600' type='button'>Back</button>
         </Link>
-        <Link to='/form/page3'>
+        <Link to='/form/page4'>
           <button className='m-4 underline text-blue-600' type='button'>Next</button>
         </Link>
       </div>

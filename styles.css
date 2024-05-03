@@ -139,55 +139,176 @@
     justify-content: center;
 }
 
+
+/* Styles for Day and Activity Cards on Itinerary Page */
+
+.itineraryPage {
+  display: flex;
+  background: linear-gradient(135deg, #FFEBD8, #C7DCA7);
+  min-height: 100vh;
+}
+
+.scheduleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 70px;
+  min-width: 100vw;
+}
+
+.hotelsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  min-width: 90vw;
+}
+
+/* Day Card */
+.day {
+  margin: 15px;
+  padding: 15px;
+  min-width: 80vw;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color:  rgb(255, 197, 197);
+}
+
+/* Header for Day */
+.dayHeader {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #4c4c4c; /* Dark color for better visibility */
+}
+
+/* Activity Card */
 .activity {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+  position: relative;
+  display: flex;
+  min-height: auto;
+  background-color: rgb(255, 235, 216); /* Lighter background for activities */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Hover Effect for Activity Card */
+.activity:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.activity button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #555;
+}
+
+/* Title for Activity */
+.activity h3 {
+  min-width: 100px;
+  font-size: 18px; /* Larger font size for titles */
+  margin: 0;
+  color: #555; /* Slightly darker color for titles */
+}
+
+/* Adjustments for First and Last Child */
+.activity h3:first-child {
+  margin-top: 0;
+}
+
+.activity h3:last-child {
+  margin-bottom: 0;
+}
+
+/* Text for Activity Description */
+.activity p {
+  font-size: 16px; /* Smaller font size for description */
+  color: #777; /* Lighter color for description */
+}
+
+/* Loader for Activity Cards */
+.activityLoader {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.loaderVideo {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+/* Styling for the ItineraryPage Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -280px;
+  left: -250px; /* Start off-screen */
+  width: 250px;
+  background: rgb(199, 220, 167); 
+  border-radius: 10px;
+  border: 3px solid rgb(137, 185, 173);
+  /* border-color:  rgb(137, 185, 173); */
+  color: #ecf0f1; /* Text color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
+  transition: top 0.3s, left 0.3s ease; /* Smooth transition when sliding in */
+  z-index: 10;
+}
+
+.menu.open {
+  top: 60px;
+  left: 15px; /* Slide in when menu is open */
+}
+
+.menu button {
+  padding: 5px;
+  background-color: #a8a8a8; /* Button background color */
+  color: #4c4c4c; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  margin: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.menu button:hover {
+  background-color: rgb(255, 197, 197); /* Darker background color on hover */
+}
+
+/* Hotel Cards */
+.hotel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 20px;
-    transition: box-shadow 0.3s ease-in-out;
-  }
-  
-  .activity:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .activity h3 {
-    font-size: 18px;
-    margin: 0;
-    color: #333;
-  }
-  
-  .activity h3:first-child {
-    margin-top: 0;
-  }
-  
-  .activity h3:last-child {
-    margin-bottom: 0;
-  }
-  
-  .day {
-    margin: 20px auto;
+    min-width: 600px;
     max-width: 800px;
     padding: 20px;
     border-radius: 10px;
+    color: #4c4c4c;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-  }
-  
-  .dayHeader {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .login-page {
-    padding: 10px;
+    background-color:  rgb(255, 197, 197);
   }
 
-  .register-page {
-    padding: 10px;
-  }
+
+
+
+
+
+.login-page {
+  padding: 10px;
+}
+
+.register-page {
+  padding: 10px;
+}
 
   .inline-block {
     padding: 20px;
