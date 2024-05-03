@@ -18,6 +18,10 @@ const Header = () => {
       function LoginClick() {
         navigate('/login');
       }
+
+      function LogoutClick() {
+        navigate('/logout');
+      }
       function RegisterClick() {
         navigate('/register');
       }
@@ -36,6 +40,9 @@ const Header = () => {
       </div>
       <div className='inline-block'  id="register" onClick={RegisterClick}>
         Register
+      </div>
+      <div className='text-right m-2' onClick={LogoutClick}>
+      Logout
       </div>
     </div>
   );

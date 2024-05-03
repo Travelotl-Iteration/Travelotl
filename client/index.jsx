@@ -13,6 +13,7 @@ import Main from './components/Main';
 
 import About from './components/About';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Form from './components/Form';
 import Page1 from './components/formPages/Page1';
 import Page2 from './components/formPages/Page2';
@@ -44,6 +45,7 @@ createRoot(root).render(
             <Route path='/manager' element={<Manager />} />
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={<Logout />} />
             <Route path='/register' element={<Register />} />
             <Route path="/form" element={<Form />}>
               <Route index element={<Page1 />} />
