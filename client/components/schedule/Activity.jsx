@@ -4,6 +4,8 @@ import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { itineraryActivityReplaced, itineraryRearranged } from '../../reducers/itineraryReducer.js';
 import ActivityModal from '../ActivityModal.jsx';
+import NoDataModal from '../NoDataModal.jsx';
+
 
 import MiniLoader from '../MiniLoader.jsx';
 
@@ -13,6 +15,8 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = React.useState(false);
   const [activityData, setActivityData] = React.useState([]);
+  const [hasNoData, setHasNoData] = React.useState(false);
+
 
   const [{isDragging}, drag] = useDrag(() => ({
     type: ItemTypes.ACTIVITY,
@@ -43,6 +47,7 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
         body: JSON.stringify({itinerary, activity, description, address})
       });
       const activityObj = await response.json();
+      console.log('activity object', activityObj)
       setLoading(false);
       dispatch(itineraryActivityReplaced({ activityObj, day, index }));
     } catch (error) { console.log('Error in fetch request to newActivity :', error) };
@@ -50,8 +55,6 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
 
   const handleClick = (e, activity, zipcode) => {
     const body = {}
-    // let addressArray = address.split(' ')
-    // let zipcode = addressArray[addressArray.length-1]
     body.name = activity
     body.zipcode = zipcode
     fetch('/getInfo', {
@@ -61,16 +64,27 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
       },
       body: JSON.stringify(body)
     })
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.status == 500) {
+        setShowModal(true)
+        setHasNoData(true)
+        return
+      }
+      return resp.json()
+    })
     .then((data) => {
       setActivityData([data.name, data.ranking_data.ranking_string, data.price_level, data.rating])
       setShowModal(true)
+      setHasNoData(false)
     })
   }
 
   return (
     <>
       <div className='activity' ref={drag} style={{opacity: isDragging ? 0.5 : 1, cursor: 'move'}}>
+        <svg className= "h-10 w-10 text-pink-500 cursor-pointer pt-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={e => handleClick(e, activity, zipcode)}>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
         {loading ? (<div className='activityLoader'><MiniLoader /></div>) :
         (<div ref={drop} style={{ backgroundColor: isOver ? 'grey' : 'transparent', height: 'auto', marginTop: '10px', display: 'flex', flexDirection: 'column' }}>
           <button onClick={handleDeleteClick}>X</button>
@@ -84,10 +98,11 @@ const Activity = ({ activity, description, address, day, index, onDrop, zipcode 
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <h3 style={{ margin: '0', marginRight: '5px' }}>Address:</h3>
-            <p style={{ margin: '0' }} onClick={e => handleClick(e, activity, zipcode)}>{address}</p>
+            <p style={{ margin: '0' }}>{address}</p>
           </div>
         </div>)}
-        {showModal && <ActivityModal activityData={activityData} setShowModal={setShowModal}></ActivityModal>}
+        {showModal && hasNoData && <NoDataModal setShowModal={setShowModal}></NoDataModal>}
+        {showModal && !hasNoData && <ActivityModal activityData={activityData} setShowModal={setShowModal}></ActivityModal>}
       </div>
     </>
   )
