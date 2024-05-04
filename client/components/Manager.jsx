@@ -92,9 +92,9 @@ const Manager = () => {
   const renderList = itineraryList.map((itinerary) => {
     return (<div className='trip-tile' key={itinerary._id} id={itinerary._id}>
       <h3>{itinerary.destination}</h3>
-      <p>From: <b>{itinerary.startDate}</b></p>
-      <p>To: <b>{itinerary.endDate}</b></p>
-      <p>Created on: <b>{new Date(itinerary.createdAt).toLocaleString()}</b></p>
+      <p style={{margin: '2px'}}>From: <b>{itinerary.startDate}</b></p>
+      <p style={{margin: '2px'}}>To: <b>{itinerary.endDate}</b></p>
+      <p style={{margin: '2px'}}>Created on: <b>{new Date(itinerary.createdAt).toLocaleString()}</b></p>
       <div className="tile-buttons"><button onClick={ seeDetails }>See Details</button><button onClick={ deleteItinerary }>Delete</button></div>
     </div>)
   })
@@ -104,7 +104,7 @@ const Manager = () => {
 
   return (<div>
     <Header />
-    <h2>Itinerary Manager</h2>
+    <h1 style={{margin: '10px', padding:'10px'}}>Itinerary Manager</h1>
     <div id='itinerary-grid'>{renderList}</div>
   </div>)
 }

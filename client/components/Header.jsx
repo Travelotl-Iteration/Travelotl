@@ -41,7 +41,7 @@ const Header = () => {
       <div className='inline-block'  id="register" onClick={RegisterClick}>
         Register
       </div>
-      <div className='text-right m-2' onClick={LogoutClick}>
+      <div className='text-end m-2 p-5' onClick={LogoutClick}>
       Logout
       </div>
     </div>
