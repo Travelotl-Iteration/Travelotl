@@ -4,7 +4,7 @@ import { Map, APIProvider } from '@vis.gl/react-google-maps';
 import ControlPanel from './ControlPanel';
 import RestaurantMarker from './RestaurantMarker';
 import HotelMarker from './HotelMarker';
-
+import Header from '../Header.jsx';
 const apiKey = 'AIzaSyBIrtoIQCvA4M7fKqg0UmZM5AZnSsJwVhk';
 
 function MapUI() {
@@ -80,7 +80,8 @@ function MapUI() {
       {/* Conditionally render the map and markers once the center has been determined */}
       {center && 
       <div>
-        <ControlPanel handleRestaurantsSwitch={handleRestaurantsSwitch} handleHotelsSwitch={handleHotelsSwitch} />
+        <Header />
+        <ControlPanel handleRestaurantsSwitch={handleRestaurantsSwitch} handleHotelsSwitch={handleHotelsSwitch}/>
         <Map
           style={{width: '100vw', height: '100vh'}}
           defaultCenter={center}
@@ -89,7 +90,7 @@ function MapUI() {
           disableDefaultUI={true}
           mapId={'d96917bb7cbafeb6'}
           >
-          {showRestaurants && restaurantMarkers}
+          {showRestaurants && restaurantMarkers} 
           {showHotels && hotelMarkers}
         </Map>
       </div>}
