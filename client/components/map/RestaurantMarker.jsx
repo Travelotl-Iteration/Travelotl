@@ -1,5 +1,4 @@
 import { AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
-import ResetaurantModal from '../RestaurantModal.jsx';
 
 const RestaurantMarker = ({coords, restaurantName}) => {
 
