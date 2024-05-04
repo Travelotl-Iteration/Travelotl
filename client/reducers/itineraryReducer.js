@@ -10,6 +10,7 @@ const itinerarySlice = createSlice({
       state.itinerary = action.payload.itinerary;
       state.hotels = action.payload.hotels
       state.restaurants = action.payload.restaurants
+      state.id = action.payload.tripId
     },
     
     itineraryRetrieved(state, action) {

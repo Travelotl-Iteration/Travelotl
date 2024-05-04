@@ -120,6 +120,9 @@ const tripController = {
       trip: JSON.stringify(res.locals.itinerary),
     })
       .then (result => {
+        //console.log(result)
+        
+        res.locals.itinerary.tripId = result["_id"]
         console.log("itinerary successfully saved in database");
         return next();
       })
@@ -152,6 +155,7 @@ const tripController = {
   patchTrip(req, res, next) {
     const {itinerary, hotels, restaurants, tripId} = req.body;
     const tripObj = { itinerary: itinerary, hotels: hotels, restaurants: restaurants };
+    console.log('tripObj', tripObj)
     Itinerary.findByIdAndUpdate(tripId, {trip: JSON.stringify(tripObj)})
       .then(result => {
         next();
