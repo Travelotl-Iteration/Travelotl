@@ -38,8 +38,8 @@ const About = () => {
         <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet the Team</h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Travelotl was created and designed by xxxx for xxxxx. Utilizing xxxx and xxxx. In collaboration with Crystal Gems, Travelotl is recently new and improved. 
+            <p className="mt-6 text-lg leading-8 text-gray-600 text-justify">
+              Travelotl was created and designed by Team Axoltyl to enhance your honeymoon planning experience. In collaboration with Crystal Gems, Travelotl is recently new and improved. 
             </p>
           </div>
           <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
